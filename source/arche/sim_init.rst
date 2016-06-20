@@ -6,7 +6,10 @@ Initialization and Restart
 All simulations are initialized from the database.  In order to support
 running from XML input files, the |Cyclus| kernel translates the input file
 contents into the database and then initializes the simulation from the
-database.  In order for this to work correctly, agents must be able to record
+database.  |Cyclus| also provides a
+random number  generator (using the mersenne_twister_engine) that supports
+initialization and restart. In order for database initialization to work
+correctly, agents must be able to record
 the entirety of their internal state to the database and able to restore that
 state exactly.  The ``cyclus::Agent`` class provides a group of functions in
 support of this functionality that must all be implemented carefully and

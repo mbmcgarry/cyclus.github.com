@@ -24,6 +24,12 @@ tag, and has the following sections in any order:
     - ``lazy``: decay is only computed whenever archetypes/agents "look" at a
       composition.
 
+  * seed (optional, once) - integer seed for the random number generator (RNG).
+    No random behavior is built into Cycamore by default, this is provided as
+    support for custom archetypes requiring non-deterministic behavior
+    - ``>0``: uses the specified value
+    - ``0``: uses current time as the seed to provide unique simulations
+
   * solver (optional, once) - configure the DRE solver.
 
     - choose one of:
@@ -62,7 +68,8 @@ Example
     <startmonth>11</startmonth>   <!-- start in november -->
     <duration>1200</duration>     <!-- run for 100 years -->
     <dt>86400</dt>                <!-- 1-day time steps -->
-    <decay>lazy</decay>           
+    <decay>lazy</decay>
+    <seed>0</seed>                <!-- RNG seeds using simulation runtime -->
   </control>
 
 
@@ -76,7 +83,8 @@ Example
         "startmonth": 11,
         "duration": 1200,
         "dt": 86400,
-        "decay": "lazy" }
+        "decay": "lazy",
+	"seed": 0 }
       }
 
 
@@ -100,6 +108,9 @@ Grammar Definition
       <element name="startyear"> <data type="nonNegativeInteger"/> </element>
       <optional>
         <element name="decay"> <text/> </element>
+      </optional>
+      <optional>
+        <element name="seed"> <text/> </element>
       </optional>
       <optional>
         <element name="solver"> 
